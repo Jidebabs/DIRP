@@ -8,7 +8,7 @@ import Unauthenticated from "./components/Unauthenticated";
 export default function App() {
   const location = useLocation();
   const navigate = useNavigate();
-  const token = localStorage.getItem("_ship_n_logic") ?? "";
+  const token = localStorage.getItem("_dirp") ?? "";
 
   if (token && location.pathname === "/sign-in") {
     navigate("/");
