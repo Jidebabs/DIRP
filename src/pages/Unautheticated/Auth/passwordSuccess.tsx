@@ -1,15 +1,14 @@
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
+import AuthLayout from "./Layout";
 import { Button } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
-import AuthLayout from "./Layout";
 
-const Verify = () => {
-  const navigate = useNavigate();
-
+const PasswordSuccess = () => {
+    const navigate = useNavigate()
   return (
     <AuthLayout>
       <div className="flex-1 flex flex-col justify-center items-center w-full h-full">
-        <div className="font-semibold text-[36px]">Verification Successful</div>
+        <div className="font-semibold text-[36px]">Password reset sucessful</div>
         <IoCheckmarkCircleOutline size={60} className="mt-10" />
         <div className="mt-20 font-semibold text-center">
           <Button
@@ -26,4 +25,4 @@ const Verify = () => {
   );
 };
 
-export default Verify;
+export default PasswordSuccess;
