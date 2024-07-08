@@ -34,7 +34,7 @@ const Navbar = () => {
         >
           <div>About</div>
           <div>Help Center</div>
-          <Button color="black" onClick={() => navigate("/")}>
+          <Button color="black" onClick={() => navigate("/login")}>
             Sign In
           </Button>
         </div>

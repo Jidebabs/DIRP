@@ -1,8 +1,16 @@
+import { useState } from "react";
 import AuthFooter from "../../../components/Unauthenticated/components/AuthFooter";
 import AuthHeader from "../../../components/Unauthenticated/components/AuthHeader";
-import StepOne from "./StepOne";
+import StepOne from "./components/StepOne";
+import StepTwo from "./components/StepTwo";
+import { useNavigate } from "react-router-dom";
+import StepThree from "./components/StepThree";
 
 const Register = () => {
+  const [step, setStep] = useState(1);
+  const [checked, setChecked] = useState("");
+  const navigate = useNavigate();
+
   return (
     <div className="flex w-full min-h-screen">
       <div className="flex">
@@ -19,14 +27,29 @@ const Register = () => {
           <div className="mt-1 text-center">
             Enter your details below to create an account
           </div>
-          <StepOne />
+          {step === 1 && (
+            <StepOne
+              setStep={setStep}
+              checked={checked}
+              setChecked={setChecked}
+            />
+          )}
+          {step === 2 && <StepTwo setStep={setStep} checked={checked} />}
+          {step === 3 && <StepThree checked={checked} />}
           <div className="flex max-w-[466px] w-full mt-3 justify-between text-sm font-bold">
             <div />
-            <div className="underline cursor-pointer">Forgot password?</div>
+            <div
+              className="underline cursor-pointer"
+              onClick={() => navigate("/login")}
+            >
+              Already have an account?
+            </div>
           </div>
           <div className="mt-5 text-sm text-center max-w-[350px] mx-auto">
             By clicking continue, you agree to our
-            <span className="underline font-medium">Terms of Use </span> and{" "}
+            <span className="underline font-medium">
+              Terms of Use{" "}
+            </span> and{" "}
             <span className="underline font-medium">Privacy Policy.</span>
           </div>
         </div>
