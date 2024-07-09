@@ -7,7 +7,7 @@ import {
 import SideNav from "./SideNav";
 import { Fragment } from "react";
 import { Drawer } from "@mantine/core";
-import { Route, Routes } from "react-router-dom";
+import { Routes } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
