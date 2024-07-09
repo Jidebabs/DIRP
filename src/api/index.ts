@@ -1,7 +1,5 @@
 import axios from "axios";
 import { refreshToken } from "../services/auth";
-import { useNavigate } from "react-router-dom";
-import useNotification from "../hooks/useNotification";
 
 function getToken() {
   let token = localStorage.getItem("_ship_n_logic") ?? null;
@@ -30,7 +28,6 @@ AxiosApi.interceptors.response.use(
     return response;
   },
   function (error) {
-    const { logoutUser } = useNotification();
 
     const originalRequest = error.config;
 
