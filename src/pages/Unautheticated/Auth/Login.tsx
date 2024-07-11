@@ -4,6 +4,11 @@ import AuthLayout from "./Layout";
 
 const Login = () => {
   const navigate = useNavigate();
+
+  const handleLogin = () => {
+    localStorage.setItem("_dirp", "tokensss");
+    navigate("/");
+  };
   return (
     <AuthLayout>
       <div className="flex-1 flex flex-col justify-center items-center p-5 w-full my-10">
@@ -28,7 +33,12 @@ const Login = () => {
             mt={16}
             className="w-full"
           />
-          <Button color="black" size="md" className="w-full mt-10 mb-5">
+          <Button
+            color="black"
+            size="md"
+            className="w-full mt-10 mb-5"
+            onClick={handleLogin}
+          >
             Login
           </Button>
         </div>
@@ -39,8 +49,12 @@ const Login = () => {
           >
             Don’t have an account??
           </div>
-          <div className="underline cursor-pointer"
-          onClick={() => navigate("/forgot-password")}>Forgot password?</div>
+          <div
+            className="underline cursor-pointer"
+            onClick={() => navigate("/forgot-password")}
+          >
+            Forgot password?
+          </div>
         </div>
       </div>
     </AuthLayout>

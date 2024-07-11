@@ -14,7 +14,7 @@ export default {
         },
       },
       screens: {
-        xs: "400px"
+        'app-md': "992px"
       }
     },
   },
