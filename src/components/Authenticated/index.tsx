@@ -1,14 +1,21 @@
-import { AppShell, Burger } from "@mantine/core";
+import { AppShell, Avatar, Burger, Button } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import Logo from "../../assets/svg/diip.svg";
 import { DashboardIcon } from "./Svg";
+import { FaPlus } from "react-icons/fa6";
+import { useLocation, useNavigate } from "react-router-dom";
+import { LuFiles } from "react-icons/lu";
+import { LuSettings } from "react-icons/lu";
+import { MdOutlineNotifications } from "react-icons/md";
 
 function Authenticated() {
   const [opened, { toggle }] = useDisclosure();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   return (
     <AppShell
-      header={{ height: 80 }}
+      header={{ height: !opened ? 80 : 0 }}
       navbar={{
         width: 280,
         breakpoint: "md",
@@ -16,10 +23,41 @@ function Authenticated() {
       }}
       padding="md"
     >
-      <AppShell.Header className="app-md:w-[calc(100%-280px)] ml-auto flex items-center shadow-sm">
-        <Burger opened={opened} onClick={toggle} hiddenFrom="md" size="sm" />
-        <div className="flex items-center justify-between"></div>
-      </AppShell.Header>
+      {!opened && (
+        <AppShell.Header className="app-md:w-[calc(100%-280px)] ml-auto flex items-center shadow-sm">
+          <div className="flex items-center justify-between px-3 w-full">
+            <div className="flex items-center gap-3">
+              <Burger
+                opened={opened}
+                onClick={toggle}
+                hiddenFrom="md"
+                size="sm"
+              />
+              <div className="flex items-center gap-3">
+                <Avatar size="lg" />
+                <div className="text-sm font-semibold">
+                  <div>Adaji Mukhtar</div>
+                  <div className="text-[#9D9D9D]">alfadaji@gmail.com</div>
+                </div>
+              </div>
+            </div>
+            {location.pathname === "/" && (
+              <>
+                <Button
+                  leftSection={<FaPlus />}
+                  color="black"
+                  className="hidden sm:block"
+                >
+                  Report vulnerability
+                </Button>
+                <div className="h-[40px] w-[40px] rounded-full flex justify-center items-center bg-black sm:hidden">
+                  <FaPlus color="white" />
+                </div>
+              </>
+            )}
+          </div>
+        </AppShell.Header>
+      )}
 
       <AppShell.Navbar className="app-md:mt-[-80px] h-full">
         <div className="flex">
@@ -28,12 +66,60 @@ function Authenticated() {
             <div className="min-h-screen w-4 bg-[#0C0957]" />
             <div className="min-h-screen w-4 bg-[#21A1D6]" />
           </div>
-          <div className="p-5">
-            <img src={Logo} alt="" className="Dirp" />
+          <div className="p-5 w-full">
+            <div className="flex w-full justify-between">
+              <img src={Logo} alt="" className="Dirp" />
+              {opened && (
+                <Burger
+                  opened={opened}
+                  onClick={toggle}
+                  hiddenFrom="md"
+                  size="sm"
+                />
+              )}
+            </div>
             <div className="mt-20 grid gap-6">
-              <div className="flex gap-3">
+              <div
+                className={`flex gap-3 cursor-pointer ${
+                  location.pathname === "/" ? "font-bold" : "font-normal"
+                } `}
+                onClick={() => navigate("/")}
+              >
                 <DashboardIcon />
-                <div className="Dashboard text-black">Dashboard</div>
+                <div className=" text-black">Dashboard</div>
+              </div>
+              <div
+                className={`flex gap-3 cursor-pointer ${
+                  location.pathname === "/report"
+                    ? "font-bold"
+                    : "font-normal"
+                } `}
+                onClick={() => navigate("/report")}
+              >
+                <LuFiles size={24} />
+                <div className="Dashboard text-black">Report</div>
+              </div>
+              <div
+                className={`flex gap-3 cursor-pointer ${
+                  location.pathname === "/settings"
+                    ? "font-bold"
+                    : "font-normal"
+                } `}
+                onClick={() => navigate("/settings")}
+              >
+                <LuSettings size={24} />
+                <div className="Dashboard text-black">Settings</div>
+              </div>
+              <div
+                className={`flex gap-3 cursor-pointer ${
+                  location.pathname === "/notifications"
+                    ? "font-bold"
+                    : "font-normal"
+                } `}
+                onClick={() => navigate("/notifications")}
+              >
+                <MdOutlineNotifications size={26} />
+                <div className="Dashboard text-black">Notification</div>
               </div>
             </div>
           </div>
@@ -46,76 +132,3 @@ function Authenticated() {
 }
 
 export default Authenticated;
-
-// import { useDisclosure } from "@mantine/hooks";
-// import Logo from "../../assets/svg/diip.svg";
-// import {
-//   MdKeyboardDoubleArrowLeft,
-//   MdKeyboardDoubleArrowRight,
-// } from "react-icons/md";
-// import SideNav from "./SideNav";
-// import { Fragment } from "react";
-// import { Drawer } from "@mantine/core";
-// import { Routes } from "react-router-dom";
-
-// import { useDispatch, useSelector } from "react-redux";
-// import { RootState } from "../../redux/store";
-// import { closeModal } from "../../redux/features/modalSlice";
-
-// const Authenticated = () => {
-//   const [opened, { toggle }] = useDisclosure();
-//   const dispatch = useDispatch();
-
-//   const isOpen = useSelector((state: RootState) => state.user.modal.isOpen);
-//   const close = () => dispatch(closeModal());
-
-//   return (
-//     <Fragment>
-//       <Drawer opened={isOpen} onClose={close} title="Authentication">
-//         <SideNav opened={opened} close={close} />
-//       </Drawer>
-//       <div className="flex items-start bg-[#F8F9FD]">
-//         <div
-//           className={`hidden lg:flex flex-col sticky pb-7 top-0 min-h-screen bg-white w-full px-5 duration-300 ${
-//             !opened ? "max-w-[270px]" : "max-w-[100px] pt-5"
-//           }`}
-//         >
-//           <div
-//             className={`flex justify-between items-center gap-2 border-b ${
-//               opened ? "flex-col" : "flow-row"
-//             }`}
-//           >
-//             <img
-//               src={Logo}
-//               alt=""
-//               className={`${opened ? "order-2" : "order-1"}`}
-//             />
-//             <>
-//               {opened && (
-//                 <MdKeyboardDoubleArrowRight
-//                   className={`cursor-pointer ${opened ? "order-1" : "order-2"}`}
-//                   onClick={toggle}
-//                 />
-//               )}
-//               {!opened && (
-//                 <MdKeyboardDoubleArrowLeft
-//                   className={`cursor-pointer ${opened ? "order-1" : "order-2"}`}
-//                   onClick={toggle}
-//                 />
-//               )}
-//             </>
-//           </div>
-//           <div className="hidden lg:grid gap-4 mt-5 flex-1 h-full">
-//             <SideNav opened={opened} close={close} />
-//           </div>
-//         </div>
-
-//         <div className="w-full min-h-screen px-5 lg:px-10 pb-10 overflow-hidden">
-//           <Routes></Routes>
-//         </div>
-//       </div>
-//     </Fragment>
-//   );
-// };
-
-// export default Authenticated;
