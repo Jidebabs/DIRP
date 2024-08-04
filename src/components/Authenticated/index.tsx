@@ -3,10 +3,14 @@ import { useDisclosure } from "@mantine/hooks";
 import Logo from "../../assets/svg/diip.svg";
 import { DashboardIcon } from "./Svg";
 import { FaPlus } from "react-icons/fa6";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { LuFiles } from "react-icons/lu";
 import { LuSettings } from "react-icons/lu";
 import { MdOutlineNotifications } from "react-icons/md";
+import Dashboard from "../../pages/Authenticated/Dashboard";
+import Report from "../../pages/Authenticated/Report";
+import Settings from "../../pages/Authenticated/Settings";
+import Notification from "../../pages/Authenticated/Notification";
 
 function Authenticated() {
   const [opened, { toggle }] = useDisclosure();
@@ -90,9 +94,7 @@ function Authenticated() {
               </div>
               <div
                 className={`flex gap-3 cursor-pointer ${
-                  location.pathname === "/report"
-                    ? "font-bold"
-                    : "font-normal"
+                  location.pathname === "/report" ? "font-bold" : "font-normal"
                 } `}
                 onClick={() => navigate("/report")}
               >
@@ -126,7 +128,14 @@ function Authenticated() {
         </div>
       </AppShell.Navbar>
 
-      <AppShell.Main>Main</AppShell.Main>
+      <AppShell.Main className="mt-5">
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/report" element={<Report />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/notifications" element={<Notification />} />
+        </Routes>
+      </AppShell.Main>
     </AppShell>
   );
 }
