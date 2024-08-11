@@ -26,7 +26,7 @@ const DateSelector = ({
   };
 
   return (
-    <div className="flex bg-white">
+    <div className="flex flex-col sm:flex-row bg-white">
       <div className="border-r">
         <label>Start Date:</label>
         <DatePicker

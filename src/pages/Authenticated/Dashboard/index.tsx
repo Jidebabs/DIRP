@@ -3,6 +3,9 @@ import DateSelector from "./components/DateSelector";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { useState } from "react";
 import moment from "moment";
+import StatusChart from "./components/StatusChart";
+import VulnurebilityChart from "./components/VulnerabilityChart";
+import SeverityLevelChart from "./components/SeverityLevelChart";
 
 const Dashboard = () => {
   const [startDate, setStartDate] = useState<Date | null>(new Date());
@@ -45,6 +48,12 @@ const Dashboard = () => {
             </Menu.Dropdown>
           </Menu>
         </div>
+      </div>
+
+      <div className="mt-10 flex flex-col lg:flex-row gap-10">
+        <VulnurebilityChart />
+        <SeverityLevelChart />
+        <StatusChart />
       </div>
     </div>
   );

@@ -128,7 +128,7 @@ function Authenticated() {
         </div>
       </AppShell.Navbar>
 
-      <AppShell.Main className="mt-5">
+      <AppShell.Main className="mt-5 bg-[#f9f9fb]">
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/report" element={<Report />} />
