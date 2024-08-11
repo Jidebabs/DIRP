@@ -6,6 +6,7 @@ import moment from "moment";
 import StatusChart from "./components/StatusChart";
 import VulnurebilityChart from "./components/VulnerabilityChart";
 import SeverityLevelChart from "./components/SeverityLevelChart";
+import ActivityTable from "./components/ActivityTable";
 
 const Dashboard = () => {
   const [startDate, setStartDate] = useState<Date | null>(new Date());
@@ -54,6 +55,10 @@ const Dashboard = () => {
         <VulnurebilityChart />
         <SeverityLevelChart />
         <StatusChart />
+      </div>
+
+      <div className="mt-10">
+        <ActivityTable />
       </div>
     </div>
   );
