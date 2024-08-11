@@ -11,9 +11,11 @@ import ActivityTable from "./components/ActivityTable";
 const Dashboard = () => {
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [endDate, setEndDate] = useState<Date | null>(new Date());
+  
 
   return (
     <div>
+
       <div className="flex flex-col sm:flex-row sm:items-center justify-between">
         <div className="page_title">Dcyber Admin Dashboard</div>
         <div className="flex gap-5 justify-end">
