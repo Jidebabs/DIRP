@@ -12,7 +12,7 @@ import Report from "../../pages/Authenticated/Report";
 import Settings from "../../pages/Authenticated/Settings";
 import Notification from "../../pages/Authenticated/Notification";
 import { Fragment } from "react/jsx-runtime";
-import CreateReport from "../../pages/Authenticated/Dashboard/components/CreateReport";
+import ReportVulnurebility from "../../pages/Authenticated/Dashboard/components/ReportVulnurebility";
 
 function Authenticated() {
   const [opened, { toggle }] = useDisclosure();
@@ -22,7 +22,7 @@ function Authenticated() {
 
   return (
     <Fragment>
-      <CreateReport close={close} opened={openedReport} />
+      <ReportVulnurebility close={close} opened={openedReport} />
       <AppShell
         header={{ height: !opened ? 80 : 0 }}
         navbar={{
