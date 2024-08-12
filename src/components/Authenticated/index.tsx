@@ -13,15 +13,20 @@ import Settings from "../../pages/Authenticated/Settings";
 import Notification from "../../pages/Authenticated/Notification";
 import { Fragment } from "react/jsx-runtime";
 import ReportVulnurebility from "../../pages/Authenticated/Dashboard/components/ReportVulnurebility";
+import { CiLogout } from "react-icons/ci";
+import ConfirmLogout from "./ConfirmLogout";
 
 function Authenticated() {
   const [opened, { toggle }] = useDisclosure();
   const location = useLocation();
   const navigate = useNavigate();
   const [openedReport, { open, close }] = useDisclosure();
+  const [openedLogout, { open: showLogout, close: closeLogout }] =
+    useDisclosure();
 
   return (
     <Fragment>
+      <ConfirmLogout close={closeLogout} opened={openedLogout} />
       <ReportVulnurebility close={close} opened={openedReport} />
       <AppShell
         header={{ height: !opened ? 80 : 0 }}
@@ -79,61 +84,72 @@ function Authenticated() {
               <div className="min-h-screen w-4 bg-[#0C0957]" />
               <div className="min-h-screen w-4 bg-[#21A1D6]" />
             </div>
-            <div className="p-5 w-full">
-              <div className="flex w-full justify-between">
-                <img src={Logo} alt="" className="Dirp" />
-                {opened && (
-                  <Burger
-                    opened={opened}
-                    onClick={toggle}
-                    hiddenFrom="md"
-                    size="sm"
-                  />
-                )}
+            <div className="flex flex-col justify-between">
+              <div className="p-5 w-full">
+                <div className="flex w-full justify-between">
+                  <img src={Logo} alt="" className="Dirp" />
+                  {opened && (
+                    <Burger
+                      opened={opened}
+                      onClick={toggle}
+                      hiddenFrom="md"
+                      size="sm"
+                    />
+                  )}
+                </div>
+                <div className="mt-20 grid gap-6">
+                  <div
+                    className={`flex gap-3 cursor-pointer ${
+                      location.pathname === "/" ? "font-bold" : "font-normal"
+                    } `}
+                    onClick={() => navigate("/")}
+                  >
+                    <DashboardIcon />
+                    <div className=" text-black">Dashboard</div>
+                  </div>
+                  <div
+                    className={`flex gap-3 cursor-pointer ${
+                      location.pathname === "/report"
+                        ? "font-bold"
+                        : "font-normal"
+                    } `}
+                    onClick={() => navigate("/report")}
+                  >
+                    <LuFiles size={24} />
+                    <div className="Dashboard text-black">Report</div>
+                  </div>
+                  <div
+                    className={`flex gap-3 cursor-pointer ${
+                      location.pathname === "/settings"
+                        ? "font-bold"
+                        : "font-normal"
+                    } `}
+                    onClick={() => navigate("/settings")}
+                  >
+                    <LuSettings size={24} />
+                    <div className="Dashboard text-black">Settings</div>
+                  </div>
+                  <div
+                    className={`flex gap-3 cursor-pointer ${
+                      location.pathname === "/notifications"
+                        ? "font-bold"
+                        : "font-normal"
+                    } `}
+                    onClick={() => navigate("/notifications")}
+                  >
+                    <MdOutlineNotifications size={26} />
+                    <div className="Dashboard text-black">Notification</div>
+                  </div>
+                </div>
               </div>
-              <div className="mt-20 grid gap-6">
-                <div
-                  className={`flex gap-3 cursor-pointer ${
-                    location.pathname === "/" ? "font-bold" : "font-normal"
-                  } `}
-                  onClick={() => navigate("/")}
-                >
-                  <DashboardIcon />
-                  <div className=" text-black">Dashboard</div>
-                </div>
-                <div
-                  className={`flex gap-3 cursor-pointer ${
-                    location.pathname === "/report"
-                      ? "font-bold"
-                      : "font-normal"
-                  } `}
-                  onClick={() => navigate("/report")}
-                >
-                  <LuFiles size={24} />
-                  <div className="Dashboard text-black">Report</div>
-                </div>
-                <div
-                  className={`flex gap-3 cursor-pointer ${
-                    location.pathname === "/settings"
-                      ? "font-bold"
-                      : "font-normal"
-                  } `}
-                  onClick={() => navigate("/settings")}
-                >
-                  <LuSettings size={24} />
-                  <div className="Dashboard text-black">Settings</div>
-                </div>
-                <div
-                  className={`flex gap-3 cursor-pointer ${
-                    location.pathname === "/notifications"
-                      ? "font-bold"
-                      : "font-normal"
-                  } `}
-                  onClick={() => navigate("/notifications")}
-                >
-                  <MdOutlineNotifications size={26} />
-                  <div className="Dashboard text-black">Notification</div>
-                </div>
+              <div
+                className={`flex gap-3 mb-5 p-5 cursor-pointer ${
+                  location.pathname === "/" ? "font-bold" : "font-normal"
+                } `}
+                onClick={showLogout}
+              >
+                <CiLogout size={30} />
+                <div className=" text-black">Logout</div>
               </div>
             </div>
           </div>

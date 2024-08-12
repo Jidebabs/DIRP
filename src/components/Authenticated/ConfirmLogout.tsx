@@ -17,7 +17,8 @@ const ConfirmLogout = ({ close, opened }: Props) => {
       <div className="flex flex-col mx-auto gap-5  my-10 justify-center w-full">
         <Button
           size="md"
-          className="bg-primary max-w-[315px] mx-auto w-full"
+          color="black"
+          className=" max-w-[315px] mx-auto w-full"
           onClick={close}
         >
           No, cancel action
@@ -27,6 +28,7 @@ const ConfirmLogout = ({ close, opened }: Props) => {
           variant="outline"
           className="max-w-[315px] w-full mx-auto"
           onClick={logoutUser}
+          color="black"
         >
           Yes, log out
         </Button>

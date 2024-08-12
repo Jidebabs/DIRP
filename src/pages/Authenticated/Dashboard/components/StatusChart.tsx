@@ -14,16 +14,13 @@ const StatusChart = () => {
   const options: ApexOptions = {
     chart: {
       type: "bar",
-      height: 150,
+      height: 250,
       stacked: false,
       toolbar: {
         show: false,
       },
       zoom: {
         enabled: false,
-      },
-      sparkline: {
-        enabled: true,
       },
     },
 
@@ -37,7 +34,7 @@ const StatusChart = () => {
     },
     xaxis: {
       labels: {
-        show: false,
+        show: true,
       },
       axisBorder: {
         show: false,
@@ -45,25 +42,30 @@ const StatusChart = () => {
     },
     yaxis: {
       labels: {
-        show: false,
+        show: true,
       },
+      min: 0,
+      max: 45,
+      tickAmount: 3,
       axisTicks: {
         show: false,
       },
     },
     grid: {
-      show: false,
+      show: true,
     },
-    colors: ["#A9DFD8"],
+    colors: ["#1BB297"],
+    labels: ["A", "B", "C", "D", "E"]
+
   };
 
   return (
     <div className="bg-white pt-7 pb-5 rounded-[10px] flex-1">
       <div className="font-semibold px-5 mb-2">Report Status</div>
       <div className="p-0">
-        <Chart options={options} series={series} type="bar" height={150} />
+        <Chart options={options} series={series} type="bar" height={200} />
       </div>
-      <div className="flex items-center gap-2 px-7 mt-10">
+      <div className="flex items-center gap-2 px-7 mt-3">
         <div className="text-sm font-medium text-grayColor">Go to reports</div>
         <FaChevronRight size={12} />
       </div>
