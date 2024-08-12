@@ -7,6 +7,7 @@ import StatusChart from "./components/StatusChart";
 import VulnurebilityChart from "./components/VulnerabilityChart";
 import SeverityLevelChart from "./components/SeverityLevelChart";
 import ActivityTable from "./components/ActivityTable";
+// import AFNActivityTable from "./components/AFNActivityTable";
 
 const Dashboard = () => {
   const [startDate, setStartDate] = useState<Date | null>(new Date());
@@ -61,6 +62,7 @@ const Dashboard = () => {
 
       <div className="mt-10">
         <ActivityTable />
+        {/* <AFNActivityTable /> */}
       </div>
     </div>
   );
