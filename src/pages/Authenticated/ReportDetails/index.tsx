@@ -1,19 +1,13 @@
-import { useParams } from "react-router-dom"
 import getStatusColor from "../../../utils/getStatusColor";
 import { SeverityEnumType } from "../../../types/severity_level";
 import { ActionIcon, Button } from "@mantine/core";
 import { IoMdMore } from "react-icons/io";
+import ReportDocument from "./components/ReportDocument";
+import ResolveModal from "../Report/components/ResolveModal";
+import { useDisclosure } from "@mantine/hooks";
 
 const ReportDetails = () => {
-  let {reportId} = useParams();
-
-  const reportData = (title:string, detail:string) => (
-    <div className="flex mb-[8px]">
-      <p className="font-[600] text-[14px] text-[#28282B] min-w-[160px] ">{title}</p>
-      <p className="text-[#28282B] text-[14px]">{detail}</p>
-    </div>
-  )
-
+  const [opened, { close, open }] = useDisclosure(false);
 
   return (
     <div>
@@ -28,28 +22,19 @@ const ReportDetails = () => {
         </div>
 
         <div className="flex gap-[16px]">
-          <Button color="#28282B">Resolve</Button>
+          <Button color="#28282B" onClick={open}>Resolve</Button>
             <ActionIcon variant="outline" color="#28282B" className="w-[40px] h-[36px]">
             <IoMdMore style={{scale:'1.2'}}/>
           </ActionIcon>
         </div>
       </div>
      
-      <div className="bg-[#ffffff] p-[32px] max-w-[595px] h-[729px] ">
-        {reportData("Title:", "Data Leak on NAF Tentative Website")}
-        {reportData("Report number:", `DIRP/00${reportId}`)}
-        {reportData("Date reported:", "08-10-2023")}
-        {reportData("Service:", "Nigerian Army")}
-        {reportData("Vulnerability type:", "Malware")}
-        {reportData("Severity level:", "Medium")}
-        {reportData("Status:", "Acknowledged")}
+      <ReportDocument/>
 
-        {reportData("Description:", "Lorem ipsum dolor sit amet consectetur. Sed malesuada sollicitudin posuere non pretium aliquet eu ultrices. Semper ac sagittis ac porta. Nec id at eros est dignissim.")}
-
-        {reportData("Recommendations:", "Lorem ipsum dolor sit amet consectetur. Sed malesuada sollicitudin posuere non pretium aliquet eu ultrices. Semper ac sagittis ac porta. Nec id at eros est dignissim. Quis quis enim odio orci. ")}
-
-        {reportData("Additional Information:", "Lorem ipsum dolor sit amet consectetur. Sed malesuada sollicitudin posuere non pretium aliquet eu ultrices. Semper ac sagittis ac porta. Nec id at eros est dignissim. Quis quis enim odio orci.")}
-      </div>
+      <ResolveModal
+      opened={opened}
+      close={close}
+      />
     </div>
   )
 }
