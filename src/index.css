@@ -38,3 +38,7 @@ button.mantine-active.mantine-Pagination-control {
   background-position: center;
   background-size: 20%;
 }
+
+.page_title {
+  @apply sm:text-xl lg:text-2xl font-bold
+}

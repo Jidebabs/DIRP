@@ -6,9 +6,16 @@ export type IProps = {
   btnText: string;
   handleClick: () => void;
   callback?: () => void;
+  text?: string;
 };
 
-const Confirmation = ({ close, handleClick, opened, btnText }: IProps) => {
+const Confirmation = ({
+  close,
+  handleClick,
+  opened,
+  btnText,
+  text,
+}: IProps) => {
   return (
     <Modal
       overlayProps={{
@@ -18,28 +25,32 @@ const Confirmation = ({ close, handleClick, opened, btnText }: IProps) => {
       centered
       opened={opened}
       onClose={close}
+      size="sm"
     >
-      <div className="text-lg font-medium mt-10 text-center">
-        Are you sure you want to{" "}
-        <span className="font-semibold">{btnText} </span> this account?
-      </div>
+      <div className="px-5">
+        <div className="text-[32px] font-bold mt-6 text-center">{btnText}</div>
 
-      <div className="flex flex-col mx-auto gap-5  my-10 justify-center w-full">
-        <Button
-          size="md"
-          className="bg-primary max-w-[315px] mx-auto w-full"
-          onClick={close}
-        >
-          No, cancel action
-        </Button>
-        <Button
-          size="md"
-          variant="outline"
-          className="max-w-[315px] w-full mx-auto"
-          onClick={handleClick}
-        >
-          Yes, <span className="capitalize">{btnText}</span> Account
-        </Button>
+        <div className="mt-5 text-center">{text}</div>
+
+        <div className="flex mx-auto gap-5  my-10 justify-center w-full">
+          <Button
+            size="md"
+            color="black"
+            className="max-w-[315px] mx-auto w-full"
+            onClick={handleClick}
+          >
+            Resolve
+          </Button>
+          <Button
+            size="md"
+            color="black"
+            
+            className="max-w-[315px] w-full mx-auto bg-[#D43423]"
+            onClick={close}
+          >
+            Cancel
+          </Button>
+        </div>
       </div>
     </Modal>
   );
