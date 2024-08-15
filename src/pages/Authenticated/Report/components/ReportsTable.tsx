@@ -139,6 +139,7 @@ const ReportsTable = () => {
             ))}
           </Table.Tbody>
         </Table>
+        
         <div className="mt-1 border-t flex-col sm:flex-row flex justify-between gap-5 px-5 py-2">
           <Pagination
             total={totalPages}

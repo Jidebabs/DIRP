@@ -112,7 +112,7 @@ function Authenticated() {
                   onClick={() => navigate("/report")}
                 >
                   <LuFiles size={24} />
-                  <div className="Dashboard text-black">Report</div>
+                  <div className="Dashboard text-black">Reports</div>
                 </div>
                 <div
                   className={`flex gap-3 cursor-pointer ${
@@ -134,7 +134,7 @@ function Authenticated() {
                   onClick={() => navigate("/notifications")}
                 >
                   <MdOutlineNotifications size={26} />
-                  <div className="Dashboard text-black">Notification</div>
+                  <div className="Dashboard text-black">Notifications</div>
                 </div>
               </div>
             </div>

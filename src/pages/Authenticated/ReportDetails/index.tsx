@@ -12,7 +12,7 @@ const ReportDetails = () => {
   return (
     <div>
       <div className="md:flex items-center justify-between mb-[73px]">
-        <div className="flex gap-[24px] items-center">
+        <div className="md:flex gap-[24px] items-center mb-4 md:mb-0">
           <p className="font-bold text-[24px] text-[#28282B] ">Data Leak on NAF Tentative Website</p>
           <p className={`max-w-[80px] w-[80px] text-center font-medium rounded text-[12px] h-[19px] ${getStatusColor(
             "MEDIUM".toLowerCase() as SeverityEnumType
