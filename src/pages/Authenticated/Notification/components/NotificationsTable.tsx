@@ -49,8 +49,8 @@ const NotificationsTable = () => {
     <div className="mt-[48px] ">
       <div className="min-h-[60vh] h-[60vh] overflow-auto">
         {dummyData.map(item => (
-          <div className="flex items-center justify-between text-[#28282B] xl:text-[16px] text-[14px] py-[15px] px-[16px] border-b border-[#E2E2E2] ">
-            <p>{item?.initiator} {item?.action}</p>
+          <div className="flex items-center justify-between text-[#28282B] xl:text-[16px] text-[14px] py-[15px] border-b border-[#E2E2E2] ">
+            <p><span className="font-bold">{item?.initiator}</span> {item?.action}</p>
             <span>{item?.time}</span>
           </div>
         ))}

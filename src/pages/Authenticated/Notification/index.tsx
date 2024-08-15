@@ -12,7 +12,7 @@ const Notification = () => {
   return (
     <div>
       <div className="flex items-center justify-between">
-        <div className="page_title">Notification</div>
+        <div className="page_title">Notifications</div>
         <div className="flex gap-5 justify-end">
           <Popover trapFocus position="bottom" withArrow shadow="md">
             <Popover.Target>
