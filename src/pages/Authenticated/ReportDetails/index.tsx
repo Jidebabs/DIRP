@@ -1,13 +1,17 @@
 import getStatusColor from "../../../utils/getStatusColor";
 import { SeverityEnumType } from "../../../types/severity_level";
-import { ActionIcon, Button } from "@mantine/core";
+import { ActionIcon, Button, Popover, Select } from "@mantine/core";
+import { AiOutlineDownload } from "react-icons/ai";
 import { IoMdMore } from "react-icons/io";
 import ReportDocument from "./components/ReportDocument";
 import ResolveModal from "../Report/components/ResolveModal";
 import { useDisclosure } from "@mantine/hooks";
+import EmailLogo from "../../../assets/svg/mail.svg"
+import SupportingImage from "../../../assets/png/sample-image.svg"
 
 const ReportDetails = () => {
   const [opened, { close, open }] = useDisclosure(false);
+  const admin = true;
 
   return (
     <div>
@@ -22,14 +26,47 @@ const ReportDetails = () => {
         </div>
 
         <div className="flex gap-[16px]">
-          <Button color="#28282B" onClick={open}>Resolve</Button>
-            <ActionIcon variant="outline" color="#28282B" className="w-[40px] h-[36px]">
-            <IoMdMore style={{scale:'1.2'}}/>
-          </ActionIcon>
+          {admin ? 
+            <div className="md:flex gap-[16px]">
+              <Select
+                clearable
+                placeholder="Assign"
+                data={['Admin1', 'Admin2', 'Admin3', 'Admin4']}
+                // defaultValue='Admin1'
+                className="w-[min-content] min-w-[114px]"
+              />
+              <Select
+                clearable
+                placeholder="Pending"
+                data={['Pending', 'Acknowledged', 'Investigating', 'Updated']}
+                // defaultValue='Pending'
+                className="w-[min-content] min-w-[150px]"
+              />
+            </div> 
+            : <Button color="#28282B" onClick={open}>Resolve</Button>}
+
+            <Popover>
+              <Popover.Target>
+                <ActionIcon variant="outline" color="#28282B" className="w-[40px] h-[36px] border-[#E2E2E2]"
+                > <IoMdMore style={{scale:'1.2'}}/>
+                </ActionIcon>
+              </Popover.Target>
+              <Popover.Dropdown>
+                <div className="text-[#28282B] ">
+                  <button className="flex items-center p-2 gap-[8px] border-b">Download report <AiOutlineDownload size={16} /></button>
+                  <button className="flex items-center p-2 gap-[8px]">Send as email <img src={EmailLogo} alt="email logo" /> </button>
+                </div>
+              </Popover.Dropdown>
+            </Popover>
         </div>
       </div>
      
       <ReportDocument/>
+
+      <p className="font-[600] text-[20px] pb-[24px] pt-[32px]">Supporting Image(s)</p>
+
+      <img src={SupportingImage} alt="email logo" className="mb-5" />
+      <img src={SupportingImage} alt="email logo" />
 
       <ResolveModal
       opened={opened}
