@@ -8,14 +8,26 @@ import ResolveModal from "../Report/components/ResolveModal";
 import { useDisclosure } from "@mantine/hooks";
 import EmailLogo from "../../../assets/svg/mail.svg"
 import SupportingImage from "../../../assets/png/sample-image.svg"
+import { pdf } from '@react-pdf/renderer';
+import { saveAs } from 'file-saver';
+import DocumentDownload from "./components/DocumentDownload";
+
 
 const ReportDetails = () => {
   const [opened, { close, open }] = useDisclosure(false);
   const admin = true;
 
+
+  const downloadPDF = async () => {
+    const fileName = `Vulnerability report`;
+    const blob = await pdf(<DocumentDownload/>).toBlob();
+    saveAs(blob, fileName);
+  };
+
+
   return (
     <div>
-      <div className="md:flex items-center justify-between mb-[73px]">
+      <div className="md:flex items-center justify-between mb-[73px] gap-4">
         <div className="md:flex gap-[24px] items-center mb-4 md:mb-0">
           <p className="font-bold text-[24px] text-[#28282B] ">Data Leak on NAF Tentative Website</p>
           <p className={`max-w-[80px] w-[80px] text-center font-medium rounded text-[12px] h-[19px] ${getStatusColor(
@@ -53,7 +65,11 @@ const ReportDetails = () => {
               </Popover.Target>
               <Popover.Dropdown>
                 <div className="text-[#28282B] ">
-                  <button className="flex items-center p-2 gap-[8px] border-b">Download report <AiOutlineDownload size={16} /></button>
+                  <button className="flex items-center p-2 gap-[8px] border-b"
+                  onClick={() => downloadPDF()}
+                  >Download report <AiOutlineDownload size={16} />
+                  </button>
+
                   <button className="flex items-center p-2 gap-[8px]">Send as email <img src={EmailLogo} alt="email logo" /> </button>
                 </div>
               </Popover.Dropdown>
