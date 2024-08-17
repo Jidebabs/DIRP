@@ -2,10 +2,14 @@ import { Button, TextInput } from "@mantine/core";
 import UserTable from "./components/UserTable";
 import PCIcon from "../../../assets/svg/pc.svg";
 import MobileIcon from "../../../assets/svg/mobile.svg";
+import { useDisclosure } from "@mantine/hooks";
+import ChangePassword from "./components/ChangePassword";
 
 const Settings = () => {
+  const [opened, { close, open }] = useDisclosure();
   return (
     <div>
+      <ChangePassword close={close} opened={opened} />
       <div className="flex items-center justify-between">
         <div className="page_title">Settings & Security</div>
         <Button color="black">Edit</Button>
@@ -22,7 +26,7 @@ const Settings = () => {
         </div>
       </div>
 
-      <Button mt={24} color="black">
+      <Button mt={24} color="black" onClick={open}>
         Change password
       </Button>
 
