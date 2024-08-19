@@ -66,6 +66,7 @@ const ActivityTable = () => {
         return "bg-[#E1EDFF] text-[#28282B]";
     }
   };
+  
   return (
     <div>
       <Confirmation
@@ -84,7 +85,7 @@ const ActivityTable = () => {
           </div>
         </div>
         <div className="flex justify-end">
-          <TextInput leftSection={<CiSearch />} className="!bg-transparent" />
+          <TextInput leftSection={<CiSearch />} className="!bg-transparent"  placeholder="Search"/>
         </div>
       </div>
 

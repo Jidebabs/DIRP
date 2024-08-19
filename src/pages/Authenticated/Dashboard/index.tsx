@@ -1,5 +1,5 @@
 import { Menu, Popover } from "@mantine/core";
-import DateSelector from "./components/DateSelector";
+import DateSelector from "../../../components/Authenticated/DateSelector";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { useState } from "react";
 import moment from "moment";
@@ -16,7 +16,6 @@ const Dashboard = () => {
 
   return (
     <div>
-
       <div className="flex flex-col sm:flex-row sm:items-center justify-between">
         <div className="page_title">Dcyber Admin Dashboard</div>
         <div className="flex gap-5 justify-end">

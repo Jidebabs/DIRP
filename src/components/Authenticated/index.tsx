@@ -11,6 +11,8 @@ import Dashboard from "../../pages/Authenticated/Dashboard";
 import Report from "../../pages/Authenticated/Report";
 import Settings from "../../pages/Authenticated/Settings";
 import Notification from "../../pages/Authenticated/Notification";
+import ReportDetails
+ from "../../pages/Authenticated/ReportDetails";
 import { Fragment } from "react/jsx-runtime";
 import ReportVulnurebility from "../../pages/Authenticated/Dashboard/components/ReportVulnurebility";
 import { CiLogout } from "react-icons/ci";
@@ -35,7 +37,7 @@ function Authenticated() {
           breakpoint: "md",
           collapsed: { mobile: !opened },
         }}
-        padding="md"
+        padding="32px"
       >
         {!opened && (
           <AppShell.Header className="app-md:w-[calc(100%-280px)] ml-auto flex items-center shadow-sm">
@@ -109,18 +111,18 @@ function Authenticated() {
                   </div>
                   <div
                     className={`flex gap-3 cursor-pointer ${
-                      location.pathname === "/report"
+                      location.pathname.includes("/reports")
                         ? "font-bold"
                         : "font-normal"
                     } `}
-                    onClick={() => navigate("/report")}
+                    onClick={() => navigate("/reports")}
                   >
                     <LuFiles size={24} />
-                    <div className="Dashboard text-black">Report</div>
+                    <div className="Dashboard text-black">Reports</div>
                   </div>
                   <div
                     className={`flex gap-3 cursor-pointer ${
-                      location.pathname === "/settings"
+                      location.pathname.includes("/settings")
                         ? "font-bold"
                         : "font-normal"
                     } `}
@@ -131,34 +133,39 @@ function Authenticated() {
                   </div>
                   <div
                     className={`flex gap-3 cursor-pointer ${
-                      location.pathname === "/notifications"
+                      location.pathname.includes("/notifications")
                         ? "font-bold"
                         : "font-normal"
                     } `}
                     onClick={() => navigate("/notifications")}
                   >
                     <MdOutlineNotifications size={26} />
-                    <div className="Dashboard text-black">Notification</div>
+                    <div className="Dashboard text-black">Notifications</div>
                   </div>
                 </div>
               </div>
-              <div
-                className={`flex gap-3 mb-5 p-5 cursor-pointer ${
-                  location.pathname === "/" ? "font-bold" : "font-normal"
-                } `}
-                onClick={showLogout}
-              >
-                <CiLogout size={30} />
-                <div className=" text-black">Logout</div>
-              </div>
+              <div className="mt-20 grid gap-6">
+                <div
+                  className={`flex gap-3 mb-5 p-5 cursor-pointer ${
+                    location.pathname === "/" ? "font-bold" : "font-normal"
+                  } `}
+                  onClick={showLogout}
+                >
+                  <CiLogout size={30} />
+                  <div className=" text-black">Logout</div>
+                </div>
             </div>
+          </div>
           </div>
         </AppShell.Navbar>
 
         <AppShell.Main className="mt-5 bg-[#f9f9fb]">
           <Routes>
             <Route path="/" element={<Dashboard />} />
-            <Route path="/report" element={<Report />} />
+            <Route path="/reports">
+              <Route index element={<Report />} />
+              <Route path=":reportId" element={<ReportDetails />} />
+            </Route>
             <Route path="/settings" element={<Settings />} />
             <Route path="/notifications" element={<Notification />} />
           </Routes>
