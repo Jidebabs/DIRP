@@ -1,4 +1,4 @@
-import {  Button, Drawer, Select, Textarea } from "@mantine/core";
+import { Button, Drawer, Select, Textarea, TextInput } from "@mantine/core";
 import { useRef, useState } from "react";
 import { RiUploadCloudLine } from "react-icons/ri";
 import { IoCloseOutline } from "react-icons/io5";
@@ -44,7 +44,20 @@ const ReportVulnurebility = ({ close, opened }: IProps) => {
       onClose={close}
       title="Report vulnerability"
     >
+      <Select
+        size="md"
+        label="Service"
+        placeholder="Select Service"
+        data={[
+          { value: "service1", label: "service1" },
+          { value: "service2", label: "service2" },
+          { value: "service3", label: "service3" },
+          { value: "data exposure", label: "Data Exposure" },
+        ]}
+      />
+      <TextInput mt={16} size="md" label="Title" placeholder="Enter Title" />
       <Textarea
+        mt={16}
         size="md"
         minRows={6}
         label="Description"
@@ -132,7 +145,9 @@ const ReportVulnurebility = ({ close, opened }: IProps) => {
         />
       </div>
 
-      <Button mt={20} color="black" className="w-full">Submit report</Button>
+      <Button size="md" mt={20} color="black" className="w-full">
+        Submit report
+      </Button>
     </Drawer>
   );
 };

@@ -39,7 +39,7 @@ const Confirmation = ({
             className="max-w-[315px] mx-auto w-full"
             onClick={handleClick}
           >
-            Resolve
+            {btnText.split(" ")[0]}
           </Button>
           <Button
             size="md"
